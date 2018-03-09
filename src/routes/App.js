@@ -2,20 +2,35 @@ import React from 'react';
 import {connect} from 'dva';
 
 import App from '../components/App';
+import Add from '../components/Add';
 
-const AppRoute = ({list}) => {
+const AppRoute = ({dispatch, list, value}) => {
+
+  const handleProps = {
+    onChange(e) {
+      dispatch({type: 'app/change', payload: e.target.value})
+    },
+    onAdd() {
+      dispatch({type: 'app/add', payload: {value}})
+    }
+  };
 
   return (
     <div>
       <h2>List</h2>
+      <Add {...handleProps}/>
       <App list={list}/>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
+// const mapStateToProps = (({list, value}) => {
+//
+//   return {list, value};
+// });
 
-  return {list: state.app.list};
-};
+const mapStateToProps = ((state) => {
+  return {list: state.app.list, value: state.app.value};
+});
 
 export default connect(mapStateToProps)(AppRoute);
