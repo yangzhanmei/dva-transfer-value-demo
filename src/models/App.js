@@ -34,9 +34,6 @@ export default {
     * add({payload: {value}}, {call, put, select}) {
       const data = yield call(query, value);
       let tempList = yield select(state => state.app.list);
-      // let tempList = yield select(({list}) => {
-      //   return list;
-      // });
       let list = [];
 
       list = list.concat(tempList);

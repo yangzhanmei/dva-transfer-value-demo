@@ -7,12 +7,14 @@ import Add from '../components/Add';
 const AppRoute = ({dispatch, list, value}) => {
 
   const handleProps = {
+    value,
     onChange(e) {
       dispatch({type: 'app/change', payload: e.target.value})
     },
     onAdd() {
       dispatch({type: 'app/add', payload: {value}})
-    }
+    },
+
   };
 
   return (
@@ -24,12 +26,8 @@ const AppRoute = ({dispatch, list, value}) => {
   );
 };
 
-// const mapStateToProps = (({list, value}) => {
-//
-//   return {list, value};
-// });
-
 const mapStateToProps = ((state) => {
+
   return {list: state.app.list, value: state.app.value};
 });
 
